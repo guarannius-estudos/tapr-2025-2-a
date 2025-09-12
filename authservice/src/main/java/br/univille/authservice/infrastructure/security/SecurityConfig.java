@@ -20,7 +20,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults());
+                .cors(Customizer.withDefaults())
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()));;
         return http.build();
     }
 }

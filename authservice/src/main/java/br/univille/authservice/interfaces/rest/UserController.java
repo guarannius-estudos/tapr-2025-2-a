@@ -17,7 +17,6 @@ import java.net.URI;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
-
     private final ListUsersHandler listUsersHandler;
     private final RegisterUserHandler registerUserHandler;
 
