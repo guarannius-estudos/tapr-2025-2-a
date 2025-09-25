@@ -2,11 +2,14 @@ package br.univille.authservice.interfaces.rest;
 
 import br.univille.authservice.application.auth.PasswordLoginHandler;
 import br.univille.authservice.application.auth.RefreshTokenService;
+import br.univille.authservice.application.auth.RequestMagicLinkHandler;
+import br.univille.authservice.application.auth.VerifyMagicLinkHandler;
 import br.univille.authservice.interfaces.rest.dto.auth.LogoutRequest;
+import br.univille.authservice.interfaces.rest.dto.auth.MagicLinkRequest;
+import br.univille.authservice.interfaces.rest.dto.auth.MagicLinkVerifyRequest;
 import br.univille.authservice.interfaces.rest.dto.auth.PasswordLoginRequest;
 import br.univille.authservice.interfaces.rest.dto.auth.RefreshRequest;
 import br.univille.authservice.interfaces.rest.dto.auth.TokenResponse;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final PasswordLoginHandler passwordLoginHandler;
     private final RefreshTokenService refreshService;
+    private final RequestMagicLinkHandler requestMagicLinkHandler;
+    private final VerifyMagicLinkHandler verifyMagicLinkHandler;
 
     @PostMapping("/login/password")
     public ResponseEntity<TokenResponse> loginWithPassword(@Valid @RequestBody PasswordLoginRequest request) {
@@ -39,5 +44,17 @@ public class AuthController {
     public ResponseEntity<Void> logout(@Valid @RequestBody LogoutRequest body) {
         refreshService.logout(body.refreshToken());
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login/magic")
+    public ResponseEntity<Void> requestMagic(@Valid @RequestBody MagicLinkRequest req) {
+        requestMagicLinkHandler.handle(req.email());
+        return ResponseEntity.accepted().build();
+    }
+
+    @PostMapping("/login/magic/verify")
+    public ResponseEntity<TokenResponse> verifyMagic(@Valid @RequestBody MagicLinkVerifyRequest req) {
+        TokenResponse tokens = verifyMagicLinkHandler.handle(req.token());
+        return ResponseEntity.ok(tokens);
     }
 }

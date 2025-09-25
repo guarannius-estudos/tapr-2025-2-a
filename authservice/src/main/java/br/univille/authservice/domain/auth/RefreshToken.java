@@ -1,7 +1,6 @@
 package br.univille.authservice.domain.auth;
 
-import br.univille.authservice.domain.auth.ExpiresAt;
-import br.univille.authservice.domain.auth.TokenHash;
+import br.univille.authservice.domain.auth.vo.ExpiresAt;
 import br.univille.authservice.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

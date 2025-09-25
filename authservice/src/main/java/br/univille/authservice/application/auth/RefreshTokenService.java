@@ -3,7 +3,7 @@ package br.univille.authservice.application.auth;
 import br.univille.authservice.application.port.TokenService;
 import br.univille.authservice.domain.auth.RefreshToken;
 import br.univille.authservice.domain.auth.RefreshTokenRepository;
-import br.univille.authservice.domain.auth.ExpiresAt;
+import br.univille.authservice.domain.auth.vo.ExpiresAt;
 import br.univille.authservice.domain.auth.TokenHash;
 import br.univille.authservice.domain.user.User;
 import br.univille.authservice.infrastructure.config.JwtProperties;
