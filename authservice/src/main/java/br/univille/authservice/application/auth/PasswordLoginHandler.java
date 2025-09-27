@@ -18,7 +18,7 @@ public class PasswordLoginHandler {
     private final UserRepository userRepository;
     private final PasswordHasher passwordHasher;
     private final TokenService tokenService;
-    private final RefreshTokenService refreshTokens;
+    private final RefreshTokenHandler refreshTokens;
 
     public TokenResponse handle(String email, String rawPassword) {
         var userOpt = userRepository.findByEmail(new Email(email).getValue());

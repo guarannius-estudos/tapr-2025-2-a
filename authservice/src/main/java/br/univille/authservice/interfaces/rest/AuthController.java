@@ -1,7 +1,7 @@
 package br.univille.authservice.interfaces.rest;
 
 import br.univille.authservice.application.auth.PasswordLoginHandler;
-import br.univille.authservice.application.auth.RefreshTokenService;
+import br.univille.authservice.application.auth.RefreshTokenHandler;
 import br.univille.authservice.application.auth.RequestMagicLinkHandler;
 import br.univille.authservice.application.auth.VerifyMagicLinkHandler;
 import br.univille.authservice.interfaces.rest.dto.auth.LogoutRequest;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Auth")
 public class AuthController {
     private final PasswordLoginHandler passwordLoginHandler;
-    private final RefreshTokenService refreshService;
+    private final RefreshTokenHandler refreshService;
     private final RequestMagicLinkHandler requestMagicLinkHandler;
     private final VerifyMagicLinkHandler verifyMagicLinkHandler;
 

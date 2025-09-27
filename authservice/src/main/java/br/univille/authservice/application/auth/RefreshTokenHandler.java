@@ -20,8 +20,7 @@ import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
-public class RefreshTokenService {
-
+public class RefreshTokenHandler {
     private final RefreshTokenRepository repository;
     private final TokenService tokenService;
     private final JwtProperties props;
